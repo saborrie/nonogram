@@ -1,0 +1,33 @@
+{
+  "name": "nonogram-components",
+  "main": "./build/index.js",
+  "scripts": {
+    "storybook": "start-storybook",
+    "build": "cross-env NODE_ENV=production BABEL_ENV=cjs babel ./src --out-dir ./build --ignore \"**/*.stories.js\""
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-a11y": "^5.1.9",
+    "@storybook/addon-info": "^5.1.9",
+    "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-notes": "^5.1.9",
+    "@storybook/addon-viewport": "^5.1.9",
+    "@storybook/react": "^5.1.9",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^5.2.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/styles": "^4.3.0",
+    "clsx": "^1.0.4",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
