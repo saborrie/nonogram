@@ -23,5 +23,6 @@ How to run the app:
 3.  ```
     cd nonogram-web-app
     yarn
+    yarn link react
     yarn start
     ```
