@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import { AppWrapper } from "nonogram-components";
+import { AppWrapper } from "./components";
 import Design from "./pages/Design";
 import Play from "./pages/Play";
 import Play2 from "./pages/Play2";
