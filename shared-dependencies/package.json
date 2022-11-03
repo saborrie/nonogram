@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react": "^16.9.0"
-  },
-  "scripts": {
-    "setup": "cd ./node_modules/react && yarn link"
-  }
-}

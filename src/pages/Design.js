@@ -1,7 +1,7 @@
 import React from "react";
 import { List } from "immutable";
 import { Link } from "react-router-dom";
-import { Button, Titlebar, TitlebarLink, GameBoard, GameBoardRow, GameSquare, Clue, ControlsBox, ControlsBoxItem, PreviewBox, PreviewSvg } from "nonogram-components";
+import { Button, Titlebar, TitlebarLink, GameBoard, GameBoardRow, GameSquare, Clue, ControlsBox, ControlsBoxItem, PreviewBox, PreviewSvg } from "../components";
 
 import createClue from "../game/createClue";
 import SolverWorker from "../game/solver.worker";
@@ -19,15 +19,15 @@ function Design() {
 
   React.useEffect(() => {
     let worker = new SolverWorker();
-    worker.addEventListener("message", event => {
+    worker.addEventListener("message", (event) => {
       setSolvable(event.data.solvable);
       setSolution(event.data.solution);
     });
     setSolverWorker(worker);
   }, []);
 
-  const columnClues = range(width).map(columnIndex => createClue(range(height).map(rowIndex => filled.get(rowIndex * width + columnIndex))));
-  const rowClues = range(height).map(rowIndex => createClue(range(width).map(columnIndex => filled.get(rowIndex * width + columnIndex))));
+  const columnClues = range(width).map((columnIndex) => createClue(range(height).map((rowIndex) => filled.get(rowIndex * width + columnIndex))));
+  const rowClues = range(height).map((rowIndex) => createClue(range(width).map((columnIndex) => filled.get(rowIndex * width + columnIndex))));
 
   React.useEffect(() => {
     if (!solverWorker) {
@@ -38,7 +38,7 @@ function Design() {
       width,
       height,
       columnClues,
-      rowClues
+      rowClues,
     });
   }, [solverWorker, filled.join("")]);
 
@@ -52,16 +52,16 @@ function Design() {
           <PreviewBox>
             <PreviewSvg width={width} height={height} pattern={filled.toJS()} />
           </PreviewBox>
-          {range(width).map(columnIndex => (
+          {range(width).map((columnIndex) => (
             <Clue key={columnIndex} variant="column">
               {columnClues[columnIndex]}
             </Clue>
           ))}
         </GameBoardRow>
-        {range(height).map(rowIndex => (
+        {range(height).map((rowIndex) => (
           <GameBoardRow key={rowIndex}>
             <Clue variant="row">{rowClues[rowIndex]}</Clue>
-            {range(width).map(columnIndex => {
+            {range(width).map((columnIndex) => {
               const index = rowIndex * width + columnIndex;
               const value = filled.get(index);
               const warning = solution[index] === 0;
@@ -82,7 +82,7 @@ function Design() {
       </GameBoard>
 
       <ControlsBox>
-        <ControlsBoxItem>
+        {/* <ControlsBoxItem>
           <Button onClick={() => setFilled(List(Array(width * height).fill(false)))}>Clear</Button>
         </ControlsBoxItem>
         <ControlsBoxItem>
@@ -92,14 +92,14 @@ function Design() {
             to={`/play?game=${btoa(
               filled
                 .toJS()
-                .map(a => (a ? 1 : 0))
+                .map((a) => (a ? 1 : 0))
                 .join("")
             )}`}
             target="_blank"
           >
             Play
           </Button>
-        </ControlsBoxItem>
+        </ControlsBoxItem> */}
 
         <ControlsBoxItem>
           <Button
@@ -110,12 +110,12 @@ function Design() {
                 width,
                 height,
                 columnClues,
-                rowClues
+                rowClues,
               })
             )}`}
             target="_blank"
           >
-            Play V2
+            Play
           </Button>
         </ControlsBoxItem>
       </ControlsBox>

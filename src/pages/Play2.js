@@ -18,8 +18,8 @@ import {
   ControlsBox,
   ControlsBoxItem,
   PreviewBox,
-  PreviewSvg
-} from "nonogram-components";
+  PreviewSvg,
+} from "../components";
 
 import range from "../utils/range";
 import compareArray from "../utils/compareArray";
@@ -33,9 +33,9 @@ function movesReducer(state, action) {
         moves: state.moves.push({
           index: action.index,
           previousValue,
-          nextValue: action.value
+          nextValue: action.value,
         }),
-        board: state.board.set(action.index, action.value)
+        board: state.board.set(action.index, action.value),
       };
     }
 
@@ -48,14 +48,14 @@ function movesReducer(state, action) {
 
       return {
         moves: state.moves.pop(),
-        board: state.board.set(move.index, move.previousValue)
+        board: state.board.set(move.index, move.previousValue),
       };
     }
 
     case "clear": {
       return {
         moves: List(),
-        board: List(state.board.toJS().fill(0))
+        board: List(state.board.toJS().fill(0)),
       };
     }
 
@@ -66,17 +66,17 @@ function movesReducer(state, action) {
 }
 
 function getClueStates({ board, width, height, rowClues, columnClues }) {
-  const columnClueStates = range(width).map(columnIndex => {
-    const values = range(height).map(rowIndex => board.get(rowIndex * width + columnIndex) === 1);
+  const columnClueStates = range(width).map((columnIndex) => {
+    const values = range(height).map((rowIndex) => board.get(rowIndex * width + columnIndex) === 1);
     return compareArray(columnClues[columnIndex], createClue(values));
   });
 
-  const rowClueStates = range(height).map(rowIndex => {
-    const values = range(width).map(columnIndex => board.get(rowIndex * width + columnIndex) === 1);
+  const rowClueStates = range(height).map((rowIndex) => {
+    const values = range(width).map((columnIndex) => board.get(rowIndex * width + columnIndex) === 1);
     return compareArray(rowClues[rowIndex], createClue(values));
   });
 
-  const isComplete = !columnClueStates.filter(s => s === false).length && !rowClueStates.filter(s => s === false).length;
+  const isComplete = !columnClueStates.filter((s) => s === false).length && !rowClueStates.filter((s) => s === false).length;
 
   return { rowClueStates, columnClueStates, isComplete };
 }
@@ -86,7 +86,7 @@ function useGame(config) {
 
   const [{ board, moves }, dispatch] = React.useReducer(movesReducer, null, () => ({
     board: List(Array(width * height).fill(0)),
-    moves: List()
+    moves: List(),
   }));
 
   const clear = () => dispatch({ type: "clear" });
@@ -114,7 +114,7 @@ function useGame(config) {
     //actions
     clear,
     undo,
-    makeMove
+    makeMove,
   };
 }
 
@@ -145,26 +145,26 @@ function Play2(props) {
 
       <Titlebar>
         <TitlebarLink component={Link} to="/">
-          stupid squares
+          nonogram
         </TitlebarLink>
       </Titlebar>
       <GameBoard>
         <GameBoardRow>
           <PreviewBox>
-            <PreviewSvg width={width} height={height} pattern={board.toJS().map(v => v === 1)} />
+            <PreviewSvg width={width} height={height} pattern={board.toJS().map((v) => v === 1)} />
           </PreviewBox>
-          {range(width).map(columnIndex => (
+          {range(width).map((columnIndex) => (
             <Clue key={columnIndex} variant="column" completed={columnClueStates[columnIndex]}>
               {columnClues[columnIndex]}
             </Clue>
           ))}
         </GameBoardRow>
-        {range(height).map(rowIndex => (
+        {range(height).map((rowIndex) => (
           <GameBoardRow key={rowIndex}>
             <Clue variant="row" completed={rowClueStates[rowIndex]}>
               {rowClues[rowIndex]}
             </Clue>
-            {range(width).map(columnIndex => {
+            {range(width).map((columnIndex) => {
               const index = rowIndex * width + columnIndex;
               const value = board.get(index);
 
