@@ -45,7 +45,7 @@ function Design() {
   return (
     <React.Fragment>
       <Titlebar>
-        <TitlebarLink>stupid squares</TitlebarLink>
+        <TitlebarLink>nonogram</TitlebarLink>
       </Titlebar>
       <GameBoard>
         <GameBoardRow>
