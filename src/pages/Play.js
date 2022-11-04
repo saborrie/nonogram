@@ -212,7 +212,7 @@ function Play(props) {
                       });
                     }
                   }}
-                  dark={(col && !row) || (row && !col)}
+                  dark={!((col && !row) || (row && !col))}
                 />
               );
             })}

@@ -185,7 +185,7 @@ function Play2(props) {
                       makeMove(index, 0);
                     }
                   }}
-                  dark={(col && !row) || (row && !col)}
+                  dark={!((col && !row) || (row && !col))}
                 />
               );
             })}

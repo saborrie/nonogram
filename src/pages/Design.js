@@ -77,7 +77,7 @@ function Design() {
                   onClick={() => {
                     setFilled(filled.set(index, !value));
                   }}
-                  dark={(col && !row) || (row && !col)}
+                  dark={!((col && !row) || (row && !col))}
                 />
               );
             })}
