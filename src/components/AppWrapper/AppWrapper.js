@@ -6,8 +6,11 @@ import purple from "@material-ui/core/colors/indigo";
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple
-  }
+    primary: purple,
+    custom: {
+      lightGrey: "rgb(205, 205, 210)",
+    },
+  },
 });
 
 const useStyles = makeStyles({
@@ -16,8 +19,8 @@ const useStyles = makeStyles({
     top: 0,
     left: 0,
     height: "100%",
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 function AppWrapper(props) {

@@ -66,6 +66,9 @@ function Design() {
               const value = filled.get(index);
               const warning = solution[index] === 0;
 
+              const col = Math.floor(columnIndex / 5) % 2 === 0;
+              const row = Math.floor(rowIndex / 5) % 2 === 0;
+
               return (
                 <GameSquare
                   key={`${rowIndex}-${columnIndex}`}
@@ -74,6 +77,7 @@ function Design() {
                   onClick={() => {
                     setFilled(filled.set(index, !value));
                   }}
+                  dark={(col && !row) || (row && !col)}
                 />
               );
             })}

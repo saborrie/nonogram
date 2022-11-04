@@ -187,6 +187,9 @@ function Play(props) {
               const index = rowIndex * width + columnIndex;
               const value = currentValues[index];
 
+              const col = Math.floor(columnIndex / 5) % 2 === 0;
+              const row = Math.floor(rowIndex / 5) % 2 === 0;
+
               return (
                 <GameSquare
                   key={`${rowIndex}-${columnIndex}`}
@@ -209,6 +212,7 @@ function Play(props) {
                       });
                     }
                   }}
+                  dark={(col && !row) || (row && !col)}
                 />
               );
             })}
